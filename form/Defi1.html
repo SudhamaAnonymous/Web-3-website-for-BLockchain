@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeFi Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* styles.css */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+ header h1 {
+    color: #333;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+ main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.defi-container {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.defi-container h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.token-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.token-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.token-list li span {
+    font-weight: bold;
+    color: #333;
+}
+
+.token-list li span.token-price {
+    color: #999;
+}
+
+.exchange-rates {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.exchange-rates th,
+.exchange-rates td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+footer {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DeFi Page</h1>
+    </header>
+    <main>
+        <section class="defi-container">
+            <h2>Decentralized Finance</h2>
+            <ul>
+                <li><a href="#">Learn More</a></li>
+                <li><a href="#">Get Started</a></li>
+            </ul>
+        </section>
+        <section class="token-list">
+            <h2>Tokens Available</h2>
+            <ul>
+                <li><span class="token-name">Token 1</span><span class="token-price">$10.00</span></li>
+                <li><span class="token-name">Token 2</span><span class="token-price">$5.00</span></li>
+                <li><span class="token-name">Token 3</span><span class="token-price">$20.00</span></li>
+            </ul>
+        </section>
+        <section class="exchange-rates">
+            <h2>Exchange Rates</h2>
+            <table>
+                <tr>
+                    <th>Currency</th>
+                    <th>Rate</th>
+                </tr>
+                <tr>
+                    <td>USD</td>
+                    <td>1.00</td>
+                </tr>
+                <tr>
+                    <td>BTC</td>
+                    <td>0.0001</td>
+                </tr>
+                <tr>
+                    <td>ETH</td>
+                    <td>0.001</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 DeFi Page</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

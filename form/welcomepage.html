@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Text Animation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 24px;
+            color: aqua;
+            text-align: center;
+
+            
+            margin-bottom: 20px;
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #333;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 4s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            50% { border-color: transparent }
+        }
+        nav {
+            background-color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1rem;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .menu-icon {
+            display: none;
+        }
+        
+        .menu-icon div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 4px 0;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .menu-icon {
+                display: block;
+            }
+        
+            #nav-list {
+                display: none;
+            }
+        }
+    </style>
+</head>
+  <nav>
+    <div class="menu-icon" onclick="openMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul id="nav-list">
+      <li><a href="#" onclick="location.href='Crypto.html'">Crypto</a></li>
+      <li><a href="#" onclick="location.href='Defi1.html'">DeFi</a></li>
+      <li><a href="#" onclick="location.href='Nft.html'">NFT</a></li>
+    </ul>
+
+</nav>
+    <div class="container">
+        <h1 class="typewriter"></h1>
+    </div>
+    
+    
+    <script >
+        function openMenu() {
+            document.getElementById('nav-list').style.display = 'block';
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const typewriterText = 'welcome To web3.0';
+            const typewriter = document.querySelector('.typewriter');
+            let index = 0;
+        
+            function type() {
+                if (index < typewriterText.length) {
+                    typewriter.textContent += typewriterText.charAt(index);
+                    index++;
+                    setTimeout(type, 75);
+                }
+            }
+        
+            type();
+        });
+    </script>
+</body>
+</html>
+

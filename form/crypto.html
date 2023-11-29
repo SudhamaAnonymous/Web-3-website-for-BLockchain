@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        
+        nav {
+            background-color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1rem;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .menu-icon {
+            display: none;
+        }
+        
+        .menu-icon div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 4px 0;
+        }
+        
+        .crypto-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 1rem 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        tr:hover {
+            background-color: #f4f4f4;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .menu-icon {
+                display: block;
+            }
+        
+            #nav-list {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="menu-icon" onclick="openMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul id="nav-list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="crypto-container">
+        <h1>Crypto Tracker</h1>
+        <input type="text" id="search" placeholder="Search Crypto">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Change</th>
+                </tr>
+            </thead>
+            <tbody id="crypto-table">
+            </tbody>
+        </table>
+    </div>
+    <script >
+        // Your API call logic goes here. Replace the url below with your own API endpoint.
+const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false';
+
+async function fetchData() {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+}
+
+function populateTable(data) {
+    const tableBody = document.getElementById('crypto-table');
+    tableBody.innerHTML = '';
+    data.forEach(coin => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+        <td>${coin.name}</td>
+        <td>$${coin.current_price}</td>
+        <td>${coin.price_change_percentage_24h}%</td>
+    `;
+    tableBody.appendChild(row);
+});
+}
+
+document.getElementById('search').addEventListener('input', function (e) {
+const searchTerm = e.target.value.toLowerCase();
+const filteredData = data.filter(coin => coin.name.toLowerCase().includes(searchTerm));
+populateTable(filteredData);
+});
+
+let data = [];
+
+fetchData().then(coins => {
+data = coins;
+populateTable(data);
+});
+
+function openMenu() {
+const navList = document.getElementById('nav-list');
+navList.style.display = navList.style.display === 'none' ? 'block' : 'none';
+}
+    </script>
+</body>
+  
+</html>

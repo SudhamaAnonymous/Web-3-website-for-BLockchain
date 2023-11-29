@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="styles.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="registrationApp"><center>
+ <form id="registrationForm" ng-controller="RegistrationController as regCtrl">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" ng-model="regCtrl.user.name" required><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" ng-model="regCtrl.user.email" required><br>
+    <label for="phone">Phone:</label><br>
+    <input type="text" id="phone" name="phone" ng-model="regCtrl.user.phone" required><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" ng-model="regCtrl.user.password" required><br>
+    <label for="confirmPassword">Confirm Password:</label><br>
+    <input type="password" id="confirmPassword" name="confirmPassword" ng-model="regCtrl.user.confirmPassword" required><br>
+    <label for="address">Address:</label><br>
+    <input type="text" id="address" name="address" ng-model="regCtrl.user.address" required><br>
+    <input type="submit" value="Submit" ng-click="regCtrl.submitForm()">
+ </form>
+</center>
+ <script src="script.js"></script>
+</body>
+</html>

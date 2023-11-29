@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Email</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Verification Email</h1>
+        <form id="form">
+            <input type="text" id="email" placeholder="Enter your email">
+            <button type="submit">Send OTP</button>
+        </form>
+        <form id="verify-form" hidden>
+            <input type="text" id="otp" placeholder="Enter the OTP">
+            <button type="submit">Verify OTP</button>
+        </form>
+    </div>
+    <script>
+        const form = document.getElementById('form');
+const verifyForm = document.getElementById('verify-form');
+const otpInput = document.getElementById('otp');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const response = await fetch('/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+    });
+
+    if (response.ok) {
+        alert('OTP sent successfully. Please check your email.');
+        form.hidden = true;
+        verifyForm.hidden = false;
+    } else {
+        alert('Failed to send OTP. Please try again.');
+    }
+});
+
+verifyForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const otp = otpInput.value;
+    const response = await fetch('/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ otp }),
+    });
+
+    if (response.ok) {
+        alert('OTP verified successfully.');
+        verifyForm.hidden = true;
+    } else {
+        alert('Failed to verify OTP. Please try again.');
+    }
+});
+    </script>
+</body>
+</html>

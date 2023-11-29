@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify You Are Not A Robot</title>
+    <style>
+      #h {
+        color: black;
+
+        text-decoration: underline;
+      }
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #verify-form {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        margin: 0 auto;
+      }
+      label,
+      button {
+        margin-top: 10px;
+      }
+      .verification-puzzle {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 5px;
+      }
+      .verification-puzzle div {
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        background-color: #eee;
+        border: 1px solid #ccc;
+        cursor: pointer;
+      }
+      .verification-puzzle div:hover {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="verify-form">
+      <p id="h">what alphabet comes after B:</p>
+      <br />
+
+      <div class="verification-puzzle">
+        <div onclick="verify('A')">A</div>
+        <div onclick="verify('B')">B</div>
+        <div onclick="verify('C')">C</div>
+        <div onclick="verify('D')">D</div>
+      </div>
+      <br />
+      <button type="submit">Submit</button>
+      <br />
+      <button type="button" onclick="location.href='checkmail1.html'">
+        click here after verification-puzzle
+      </button>
+    </form>
+
+    <script>
+      var correctAnswer = "C";
+      var userAnswer = null;
+
+      function verify(answer) {
+        userAnswer = answer;
+        console.log("User selected:", answer);
+      }
+
+      document
+        .getElementById("verify-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          if (userAnswer === correctAnswer) {
+            // Add your form submission logic here
+
+            alert("correctAnswer:" + correctAnswer);
+          } else {
+            alert("Incorrect answer. Please try again.");
+          }
+        });
+    </script>
+  </body>
+</html>

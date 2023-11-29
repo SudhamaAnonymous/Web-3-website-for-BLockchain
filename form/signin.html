@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        body,h{
+            align-items: center;
+            display:flex; flex-direction:column; justify-content:center;
+            
+          
+        }
+        #signin-form {
+            display:flex; flex-direction:column; justify-content:center;
+            align-items: center;  
+        }
+        .error {
+            color: red;
+        }
+        @keyframes rotation {
+            from {
+               transform: rotate(0deg);
+            }
+           
+            to {
+               transform: rotate(360deg);
+            }
+           }
+           svg {
+            animation: rotation 2s linear infinite;
+           }
+           #animation1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: relative;
+            animation: example 4s infinite;
+           }
+           
+           @keyframes example {
+             0% { background-color: red; left: 0px; top: 0px; }
+             25% { background-color: yellow; left: 200px; top: 0px; }
+             50% { background-color: blue; left: 200px; top: 200px; }
+             75% { background-color: green; left: 0px; top: 200px; }
+             100% { background-color: red; left: 0px; top: 0px; }
+           }
+    </style>
+</head>
+<body id="animation1">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+       </svg>
+      
+ 
+    <h1 class="h">Sign In</h1>
+    <div id="animatedBox">
+    <form id="signin-form">
+        <label for="email">Email:</label>
+        <br>
+        <input type="email" id="email" required>
+        <br>
+        <label for="password">Password:</label>
+        <br>
+        <input type="password" id="password" required>
+        <br>
+        <input type="submit" value="Sign In">
+    </form>
+    <div id="error-message" class="error"></div>
+    </div>
+    <script>
+        function startAnimation() {
+            const animatedBox = document.getElementById('animatedBox');
+            animatedBox.style.animationPlayState = 'running';
+           }
+        async function validateCredentials(email, password) {
+            // Simulate an asynchronous request to the server
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    // For simplicity, this example assumes the server always returns true
+                    resolve(true);
+                }, 1000);
+            });
+        }
+
+        document.getElementById('signin-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Perform server-side validation
+            const isValid = await validateCredentials(email, password);
+
+            if (!isValid) {
+                // Display an error message to the user
+                document.getElementById('error-message').textContent = 'Invalid email or password.';
+            } else {
+                // Navigate to the dashboard
+                window.location.href = "/dashboard";
+            }
+        });
+    </script>
+</body>
+</html>
